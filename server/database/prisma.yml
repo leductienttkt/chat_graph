@@ -1,0 +1,7 @@
+endpoint: https://us1.prisma.sh/le-duc-tien-62f698/chat_graphql/dev
+datamodel: datamodel.graphql
+hooks:
+  post-deploy:
+    - echo "Deployment finished"
+    - graphql get-schema --project database
+    - graphql prepare

@@ -1,0 +1,15 @@
+type User {
+  id: ID! @unique
+  name: String!
+  email: String! @unique
+  password: String!
+  send_messages: [Message!]! @relation(name: "Sender")
+  receive_messages: [Message!]! @relation(name: "Receiver")
+}
+
+type Message {
+  id: ID! @unique
+  content: String!
+  sender: User! @relation(name: "Sender")
+  receiver: User! @relation(name: "Receiver")
+}

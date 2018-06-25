@@ -1,0 +1,29 @@
+# import Message from "./generated/prisma.graphql"
+
+type Query {
+  messages: [Message!]
+  users: [User!]
+  messages_by_user(sender_id: String!, receiver_id: String!): [Message!]
+}
+
+type Mutation {
+  send_message(content: String!, receiver_id: ID!): Message!
+  signup(email: String!, password: String!, name: String!): AuthPayload
+  signin(email: String!, password: String!): AuthPayload
+}
+
+type Subscription {
+  newMessage: MessageSubscriptionPayload
+}
+
+type AuthPayload {
+  token: String
+  user: User
+}
+
+type User {
+  id: ID!
+  name: String!
+  email: String!
+  messages: [Message!]
+}
